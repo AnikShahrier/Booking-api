@@ -14,6 +14,9 @@ const UserSchema: Schema<IUser> = new Schema({
   password: { type: String, required: true }
 });
 
+UserSchema.index({ email: 1 }, { unique: true });
+
+
 // Hash password before saving
 UserSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();

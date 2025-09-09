@@ -9,10 +9,27 @@ export const createBooking = async (req: Request, res: Response) => {
 };
 
 // Get all bookings for current user
+// Get all bookings for current user (with pagination)
 export const getBookings = async (req: Request, res: Response) => {
-  const bookings = await Booking.find({ user: req.userId });
-  res.json(bookings);
+  const page = Number(req.query.page) || 1;
+  const limit = Number(req.query.limit) || 10;
+
+  const bookings = await Booking.find({ user: req.userId })
+    .skip((page - 1) * limit)
+    .limit(limit)
+    .sort({ createdAt: -1 });
+
+  const total = await Booking.countDocuments({ user: req.userId });
+
+  res.json({
+    page,
+    limit,
+    total,
+    totalPages: Math.ceil(total / limit),
+    data: bookings,
+  });
 };
+
 
 // Get single booking
 export const getBooking = async (req: Request, res: Response) => {
