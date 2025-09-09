@@ -29,6 +29,10 @@ export const getBookings = async (req: Request, res: Response) => {
     data: bookings,
   });
 };
+export const getAllBookings = async (req: Request, res: Response) => {
+  const bookings = await Booking.find().sort({ createdAt: -1 });
+  res.json(bookings);
+};
 
 
 // Get single booking

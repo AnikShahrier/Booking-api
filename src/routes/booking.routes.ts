@@ -4,13 +4,18 @@ import {
   getBookings,
   getBooking,
   updateBooking,
-  deleteBooking
+  deleteBooking,
+  getAllBookings
 } from "../controllers/booking.controller";
-import { requireAuth } from "../middlewares/auth";
+import { requireAuth } from "../middlewares/requireAuth";
 import { validate } from "../middlewares/validate";
 import { createBookingSchema, updateBookingSchema } from "../schemas/booking.schema";
+import { requireRole } from "../middlewares/requireRole";
+
 
 const router = express.Router();
+
+router.get("/all", requireAuth, requireRole("admin"), getAllBookings);
 
 router.use(requireAuth);
 

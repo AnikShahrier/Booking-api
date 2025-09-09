@@ -1,6 +1,6 @@
 import express from "express";
 import { register, login, me } from "../controllers/auth.controller";
-import { requireAuth } from "../middlewares/auth";
+import { requireAuth } from "../middlewares/requireAuth";
 import { validate } from "../middlewares/validate";
 import { registerSchema, loginSchema } from "../schemas/auth.schema";
 
