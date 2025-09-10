@@ -30,9 +30,13 @@ export const getBookings = async (req: Request, res: Response) => {
   });
 };
 export const getAllBookings = async (req: Request, res: Response) => {
-  const bookings = await Booking.find().sort({ createdAt: -1 });
+  const bookings = await Booking.find()
+    .sort({ createdAt: -1 })
+    .populate("user", "name email role"); // <-- populate user info
+
   res.json(bookings);
 };
+
 
 
 // Get single booking
