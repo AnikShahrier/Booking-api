@@ -139,5 +139,4 @@ This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) f
 <p align="center">
   Made with ❤️ by <a href="https://github.com/AnikShahrier">Anik Shahrier</a>
 </p>
-  Made with ❤️ by <a href="https://github.com/AnikShahrier">Anik Shahrier</a>
-</p>
+  
